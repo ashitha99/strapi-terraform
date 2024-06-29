@@ -47,14 +47,14 @@ resource "aws_security_group" "terraform_sg" {
   }
 }
 
-resource "tls_private_key" "terraform_key" {
+resource "tls_private_key" "web-server" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "web-server" {
   key_name   = "web-server"
-  public_key = tls_private_key.terraform_key.public_key_openssh
+  public_key = tls_private_key.web-server.public_key_openssh
 }
 
 resource "aws_instance" "strapi" {
