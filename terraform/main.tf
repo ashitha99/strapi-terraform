@@ -52,8 +52,8 @@ resource "tls_private_key" "terraform_key" {
   rsa_bits  = 4096
 }
 
-resource "aws_key_pair" "terraform_key" {
-  key_name   = "terraform-key"
+resource "aws_key_pair" "web-server" {
+  key_name   = "web-server"
   public_key = tls_private_key.terraform_key.public_key_openssh
 }
 
