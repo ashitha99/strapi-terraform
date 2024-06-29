@@ -14,8 +14,8 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] 
 }
 
-resource "aws_security_group" "terraform_sg" {
-  name        = "terraform_sg"
+resource "aws_security_group" "terraform1_sg" {
+  name        = "terraform1_sg"
   description = "Allow SSH, HTTP, and custom port traffic"
 
   ingress {
@@ -61,7 +61,7 @@ resource "aws_instance" "strapi" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.small"  # Changed instance type to t2.small
   subnet_id                   = "subnet-0960eb2b005124543"  # Replace with your subnet ID
-  vpc_security_group_ids      = [aws_security_group.terraform_sg.id]
+  vpc_security_group_ids      = [aws_security_group.terraform1_sg.id]
   key_name                    = aws_key_pair.web-server1.key_name
   associate_public_ip_address = true
 
