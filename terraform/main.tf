@@ -14,8 +14,8 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] 
 }
 
-resource "aws_security_group" "terraform1_sg" {
-  name        = "terraform1_sg"
+resource "aws_security_group" "terraform_sg" {
+  name        = "terraform_sg"
   description = "Allow SSH, HTTP, and custom port traffic"
 
   ingress {
