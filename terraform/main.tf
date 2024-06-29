@@ -47,14 +47,14 @@ resource "aws_security_group" "terraform_sg" {
   }
 }
 
-resource "tls_private_key" "web-server" {
+resource "tls_private_key" "web-server1" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-resource "aws_key_pair" "web-server" {
-  key_name   = "web-server"
-  public_key = tls_private_key.web-server.public_key_openssh
+resource "aws_key_pair" "web-server1" {
+  key_name   = "web-server1"
+  public_key = tls_private_key.web-server1.public_key_openssh
 }
 
 resource "aws_instance" "strapi" {
@@ -62,7 +62,7 @@ resource "aws_instance" "strapi" {
   instance_type               = "t2.small"  # Changed instance type to t2.small
   subnet_id                   = "subnet-0960eb2b005124543"  # Replace with your subnet ID
   vpc_security_group_ids      = [aws_security_group.terraform_sg.id]
-  key_name                    = aws_key_pair.web-server.key_name
+  key_name                    = aws_key_pair.web-server1.key_name
   associate_public_ip_address = true
 
   user_data = <<-EOF
