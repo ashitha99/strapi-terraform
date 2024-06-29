@@ -61,8 +61,8 @@ resource "aws_instance" "strapi" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.small"  # Changed instance type to t2.small
   subnet_id                   = "subnet-0960eb2b005124543"  # Replace with your subnet ID
-  vpc_security_group_ids      = [aws_security_group.terraform1_sg.id]
-  key_name                    = aws_key_pair.terraform_key.key_name
+  vpc_security_group_ids      = [aws_security_group.terraform_sg.id]
+  key_name                    = aws_key_pair.web-server.key_name
   associate_public_ip_address = true
 
   user_data = <<-EOF
