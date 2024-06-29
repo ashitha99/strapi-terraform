@@ -1,5 +1,5 @@
-resource "aws_security_group" "terraform1_sg" {
-  name        = "terraform1_sg"
+resource "aws_security_group" "terraform_sg" {
+  name        = "terraform_sg"
   description = "Allow SSH, HTTP, and custom port traffic"
 
   ingress {
@@ -32,10 +32,10 @@ resource "aws_security_group" "terraform1_sg" {
 }
 resource "aws_instance" "strapi" {
   ami                         = "ami-09040d770ffe2224f"
-  instance_type               = "t2.medium"
-  subnet_id              = "subnet-0960eb2b005124543"
-  vpc_security_group_ids = [aws_security_group.terraform1_sg.id]
-  key_name = "terras"
+  instance_type               = "t2.small"
+  subnet_id                   = "subnet-0960eb2b005124543"
+  vpc_security_group_ids      = [aws_security_group.terraform_sg.id]
+  key_name = "web-server"
   associate_public_ip_address = true
   user_data                   = <<-EOF
                                 #!/bin/bash
@@ -75,6 +75,6 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"  # Replace with your preferred region
+  region = "ap-south-1"  # Replace with your preferred region
 }
 
